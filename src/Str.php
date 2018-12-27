@@ -15,6 +15,7 @@ namespace XuTL\Supports;
  */
 class Str
 {
+
     /**
      * Returns the trailing name component of a path.
      * This method is similar to the php function `basename()` except that it will
