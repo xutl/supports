@@ -1,0 +1,25 @@
+{
+    "name": "xutl/supports",
+    "description": "common components",
+    "keywords": ["support", "http", "guzzle"],
+    "support": {
+        "issues": "https://github.com/xutl/supports/issues",
+        "source": "https://github.com/xutl/supports"
+    },
+    "authors": [
+        {
+            "name": "xutl",
+            "email": "xutl@l68.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "XuTL\\Supports\\": "src/"
+        }
+    },
+    "license": "MIT"
+}
