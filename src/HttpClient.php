@@ -20,6 +20,7 @@ class HttpClient
         post as public;
         get as public;
         postJSON as public;
+        postXML as public;
         request as public;
     }
 

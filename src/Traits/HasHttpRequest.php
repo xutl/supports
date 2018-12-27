@@ -2,9 +2,14 @@
 
 namespace XuTL\Supports\Traits;
 
+use DOMDocument;
+use DOMElement;
+use DOMText;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
+use SimpleXMLElement;
+use XuTL\Supports\Str;
 
 /**
  * Trait HasHttpRequest
@@ -63,6 +68,26 @@ trait HasHttpRequest
             $options['form_params'] = $params;
         }
         return $this->request('post', $endpoint, $options);
+    }
+
+    /**
+     * make a post xml request
+     * @param string $endpoint
+     * @param mixed $data
+     * @param array $headers
+     * @return mixed
+     */
+    protected function postXML($endpoint, $data, $headers = [])
+    {
+        if ($data instanceof DOMDocument) {
+            $xml = $data->saveXML();
+        } elseif ($data instanceof SimpleXMLElement) {
+            $xml = $data->saveXML();
+        } else {
+            $xml = $this->convertArrayToXml($data);
+        }
+        $header['Content-Type'] = 'application/xml; charset=UTF-8';
+        return $this->post($endpoint, $xml, $headers);
     }
 
     /**
@@ -205,6 +230,54 @@ trait HasHttpRequest
             }
         }
         return $result;
+    }
+
+    /**
+     * Converts array to XML document.
+     * @param $arr
+     * @return string
+     */
+    protected function convertArrayToXml($arr)
+    {
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $root = new DOMElement('xml');
+        $dom->appendChild($root);
+        $this->buildXml($root, $arr);
+        return $dom->saveXML();
+    }
+
+    /**
+     * Build xml
+     * @param DOMElement $element
+     * @param mixed $data
+     */
+    protected function buildXml($element, $data)
+    {
+        if (is_array($data)) {
+            foreach ($data as $name => $value) {
+                if (is_int($name) && is_object($value)) {
+                    $this->buildXml($element, $value);
+                } elseif (is_array($value) || is_object($value)) {
+                    $child = new DOMElement(is_int($name) ? 'item' : $name);
+                    $element->appendChild($child);
+                    $this->buildXml($child, $value);
+                } else {
+                    $child = new DOMElement(is_int($name) ? 'item' : $name);
+                    $element->appendChild($child);
+                    $child->appendChild(new DOMText((string)$value));
+                }
+            }
+        } elseif (is_object($data)) {
+            $child = new DOMElement(Str::basename(get_class($data)));
+            $element->appendChild($child);
+            $array = [];
+            foreach ($data as $name => $value) {
+                $array[$name] = $value;
+            }
+            $this->buildXml($child, $array);
+        } else {
+            $element->appendChild(new DOMText((string)$data));
+        }
     }
 
     /**
