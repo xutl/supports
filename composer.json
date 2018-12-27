@@ -13,7 +13,12 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.0",
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
+        "ext-json": "*",
+        "ext-dom": "*",
+        "ext-libxml": "*",
         "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
