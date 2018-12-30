@@ -5,15 +5,15 @@
  * @license http://www.tintsoft.com/license/
  */
 
-namespace XuTL\Supports;
+namespace XuTL\Supports\Util;
 
 
 /**
- * Class Str
+ * Class StringUtil
  *
  * @author Tongle Xu <xutongle@gmail.com>
  */
-class Str
+class StringUtil
 {
 
     /**

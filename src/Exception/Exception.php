@@ -5,21 +5,20 @@
  * @license http://www.tintsoft.com/license/
  */
 
-namespace XuTL\Supports\Base;
-
+namespace XuTL\Supports\Exception;
 
 /**
- * Class RuntimeException
+ * Class Exception
  *
  * @author Tongle Xu <xutongle@gmail.com>
  */
-class RuntimeException extends \RuntimeException
+class Exception extends \Exception
 {
     /**
      * @return string the user-friendly name of this exception
      */
     public function getName()
     {
-        return 'Runtime Exception';
+        return 'Exception';
     }
 }

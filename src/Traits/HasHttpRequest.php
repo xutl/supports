@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
 use SimpleXMLElement;
-use XuTL\Supports\Str;
+use XuTL\Supports\Util\StringUtil;
 
 /**
  * Trait HasHttpRequest
@@ -268,7 +268,7 @@ trait HasHttpRequest
                 }
             }
         } elseif (is_object($data)) {
-            $child = new DOMElement(Str::basename(get_class($data)));
+            $child = new DOMElement(StringUtil::basename(get_class($data)));
             $element->appendChild($child);
             $array = [];
             foreach ($data as $name => $value) {

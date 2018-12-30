@@ -5,7 +5,7 @@
  * @license http://www.tintsoft.com/license/
  */
 
-namespace XuTL\Supports\Base;
+namespace XuTL\Supports\Exception;
 
 
 /**

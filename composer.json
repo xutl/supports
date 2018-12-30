@@ -1,7 +1,11 @@
 {
     "name": "xutl/supports",
     "description": "common components",
-    "keywords": ["support", "http", "guzzle"],
+    "keywords": [
+        "support",
+        "http",
+        "guzzle"
+    ],
     "support": {
         "issues": "https://github.com/xutl/supports/issues",
         "source": "https://github.com/xutl/supports"
