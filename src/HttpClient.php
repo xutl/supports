@@ -44,6 +44,17 @@ class HttpClient
     }
 
     /**
+     * 获取基础路径
+     * @param array $httpOptions
+     * @return string
+     */
+    public function setHttpOptions($httpOptions)
+    {
+        $this->httpOptions = $httpOptions;
+        return $this;
+    }
+
+    /**
      * 设置基础路径
      * @param string $baseUri
      * @return $this

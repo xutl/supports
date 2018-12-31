@@ -33,7 +33,7 @@ trait HasHttpRequest
      *
      * @var array
      */
-    protected $httpOptions = [];
+    public $httpOptions = [];
 
     /**
      * Make a get request.
